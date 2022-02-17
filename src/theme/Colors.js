@@ -1,5 +1,5 @@
 export default {
-  transparent: "rgba(0,0,0,0)",
+  transparent: "rgba(20,20,20,.8)",
   primary: "#2b1190",
   lightGreen: "#68ddba",
   backgroundDark: 'rgb(14,16,21)',

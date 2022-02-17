@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: Dimensions.DEVICE_WIDTH,
         paddingHorizontal: Dimensions.DEVICE_WIDTH * .05,
         paddingTop: 20,
-        paddingBottom: 0,
+        paddingBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
