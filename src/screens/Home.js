@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, SafeAreaView, useColorScheme, View } from 'react-native'
 import React from 'react'
+import Header from '../components/Header'
+import { Colors } from '../theme'
 
 const Home = () => {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  )
+    const lightMode = useColorScheme()
+
+    return (
+        <View style={{ flex: 1, backgroundColor: lightMode == 'dark' ? Colors.white : Colors.white }}>
+            <Header />
+        </View>
+    )
 }
 
 export default Home
