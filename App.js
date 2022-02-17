@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
+import Navgation from './src/navigation'
 
-import Colors from './src/theme/Colors'
 
 const App = () => {
-
   return (
-    <View style={{ flex: 1, backgroundColor: Colors.background }} >
-     <Text>App</Text>
+    <View style={{ flex: 1 }} >
+      <Navgation />
     </View>
   )
 }
