@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Colors, Dimensions } from '../theme';
 import SelectionButton from './SelectionButton';
 import TopModal from './TopModal';
+import PopularItem from './PopularItem';
 
 const ExploreSection = () => {
     const lightMode = useColorScheme()
@@ -23,6 +24,7 @@ const ExploreSection = () => {
                     setShowTopModal(false)
                 }}
             />
+            <PopularItem />
         </View>
     )
 }
