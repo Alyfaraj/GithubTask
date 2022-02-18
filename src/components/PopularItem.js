@@ -100,8 +100,8 @@ const sharedStyles = (lightMode) => StyleSheet.create({
         opacity: .7
     },
     numberBackground: {
-        paddingHorizontal: 10,
-        paddingVertical: 5,
+        paddingHorizontal: 5,
+        paddingVertical: 7,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: lightMode == 'dark' ? 'rgb(41,59,60)' : 'rgb(230,227,242)',

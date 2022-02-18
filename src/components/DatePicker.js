@@ -2,18 +2,30 @@ import { StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-
 import React from 'react'
 import { Colors, Dimensions } from '../theme';
 import { Icon } from 'react-native-elements';
+import { ModalDatePicker } from 'react-native-material-date-picker';
+import moment from 'moment';
 
-const SelectionButton = ({ title, onPress, style,label='View' }) => {
+const DatePicker = ({ date, setDate, style }) => {
     const lightMode = useColorScheme()
     const styles = { ...sharedStyles(lightMode) };
 
     return (
-        <TouchableOpacity style={[styles.container, { ...style }]} onPress={onPress} activeOpacity={.7} >
-            <Text style={styles.text} >
-                <Text style={{ opacity: .5 }} >{label}:  </Text>
-                {title}
-            </Text>
-            <Icon name='down' type='ant-design' size={16} color={lightMode == 'dark' ? Colors.white : Colors.backgroundDark} />
+        <TouchableOpacity activeOpacity={.7} >
+            <ModalDatePicker
+            
+                button={<View style={[styles.container, { ...style }]}  >
+                    <Text style={styles.text} >
+                        <Text style={{ opacity: .5 }} >Date:  </Text>
+                       {moment(date).format('ll')}
+                    </Text>
+                    <Icon name='down' type='ant-design' size={16} color={lightMode == 'dark' ? Colors.white : Colors.backgroundDark} />
+                </View>
+                }
+                locale="en"
+                onSelect={(date) => setDate(date)}
+                isHideOnSelect={false}
+                initialDate={date}
+            />
         </TouchableOpacity>
     )
 }
@@ -37,11 +49,11 @@ const sharedStyles = (lightMode) => StyleSheet.create({
         borderColor: Colors.backgroundLight,
     },
     text: {
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: "500",
         color: lightMode == 'dark' ? Colors.white : Colors.backgroundDark
     }
 })
 
-export default SelectionButton
+export default DatePicker
 
