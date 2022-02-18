@@ -2,8 +2,10 @@ import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Colors, Dimensions } from '../theme';
 import { Icon } from 'react-native-elements';
+import moment from 'moment';
+import ShortNumber from '../utils/ShortNumber';
 
-const PopularItem = () => {
+const PopularItem = ({full_name,description,updated_at,language,stargazers_count}) => {
     const lightMode = useColorScheme()
     const styles = { ...sharedStyles(lightMode) };
 
@@ -15,23 +17,20 @@ const PopularItem = () => {
                     <Icon size={14} color={Colors.lightGreen} name='star-o' type='font-awesome' />
                     <Text style={styles.language}>{' '}Star</Text>
                     <View style={styles.numberBackground} >
-                        <Text style={styles.startCount} >40k</Text>
+                        <Text style={styles.startCount} >{ShortNumber(stargazers_count)}</Text>
                     </View>
                 </View>
             </View>
 
             <View style={styles.nameRow} >
                 <Icon color={Colors.lightGreen} size={20} name='book' type='ant-design' />
-                <Text style={styles.repoName} >AlyFaraj/GitHubTask</Text>
+                <Text style={styles.repoName} >{full_name}</Text>
             </View>
 
-            <Text style={styles.description} >Lorem Ipsum is simply dummy text of the
-                printing and tvpesettina industrv. Lorem Ipsum
-                has been the industry's.
-            </Text>
+            <Text style={styles.description} >{description}</Text>
             <View style={styles.detailsSection} >
-                <Text style={styles.language} >Last Update 3 hours ago</Text>
-                <Text style={styles.language} >C++</Text>
+                <Text style={styles.language} >Last Update {moment(new Date(updated_at)).fromNow()} {'  '} </Text>
+                <Text style={styles.language} >{language}</Text>
             </View>
         </View>
     )
