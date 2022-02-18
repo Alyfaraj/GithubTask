@@ -1,25 +1,52 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
-import React, { useState } from 'react'
+import { ActivityIndicator, FlatList, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Colors, Dimensions } from '../theme';
 import SelectionButton from './SelectionButton'
-
-import { ModalDatePicker } from 'react-native-material-date-picker';
 import DatePicker from './DatePicker';
-
+import LanguagesModal from './LanguagesModal';
+import { getRepositories } from '../sotre/actions/repositories';
+import RepoItem from './RepoItem'
+import { useDispatch, useSelector } from 'react-redux';
 
 const RepositoriesSection = () => {
   const lightMode = useColorScheme()
   const styles = { ...sharedStyles(lightMode) };
   const [date, setDate] = useState(new Date())
+  const [showLanModal, setShowLangModal] = useState(false)
+  const [language, setLanguage] = useState(null)
+  const { repostories, loading } = useSelector(state => state.repositories)
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getRepositories(language, date))
+  }, [date, language])
+
+
+  if (loading) return <ActivityIndicator style={{marginTop:Dimensions.DEVICE_HEIGHT*.3}} size='large' />
 
   return (
-    <View>
+    <View style={{flex:1}} >
       <Text style={styles.title} >Repositories</Text>
-      <View style={styles.pickerRow} >
-        <SelectionButton title='any' label='language' />
-        <DatePicker date={date} setDate={setDate}  />
-      </View>
+      <FlatList
+        ListHeaderComponent={() => (
+          <View>
+            <View style={styles.pickerRow} >
+              <SelectionButton title={language ? language : 'Any'} label='language' onPress={() => setShowLangModal(true)} />
+              <DatePicker date={date} setDate={setDate} />
+            </View>
+            <LanguagesModal onPress={(name) => {
+              setLanguage(name)
+              setShowLangModal(false)
+            }} visible={showLanModal} onClose={() => setShowLangModal(false)} />
 
+          </View>
+        )}
+        keyExtractor={(item, index) => item.id}
+        renderItem={({ item }) => <RepoItem {...item} />}
+        data={repostories}
+
+      />
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
+import { Platform, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Dimensions, Colors } from '../theme'
 
@@ -39,7 +39,7 @@ const sharedStyles = (lightMode) => StyleSheet.create({
     selectedText: {
         fontFamily: 'Silka',
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: Platform.OS == 'android' ? '800' : '600',
         color: lightMode == 'dark' ? Colors.white : Colors.primary
     },
     selectedBottom: {

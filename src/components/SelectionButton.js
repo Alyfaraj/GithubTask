@@ -37,7 +37,7 @@ const sharedStyles = (lightMode) => StyleSheet.create({
         borderColor: Colors.backgroundLight,
     },
     text: {
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: "500",
         color: lightMode == 'dark' ? Colors.white : Colors.backgroundDark
     }

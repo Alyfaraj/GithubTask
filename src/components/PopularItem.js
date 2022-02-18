@@ -1,4 +1,4 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { Platform, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Colors, Dimensions } from '../theme';
 import { Icon } from 'react-native-elements';
@@ -27,7 +27,7 @@ const PopularItem = ({full_name,description,updated_at,language,stargazers_count
                 <Text style={styles.repoName} >{full_name}</Text>
             </View>
 
-            <Text style={styles.description} >{description}</Text>
+            <Text style={styles.description} >{description.slice(0,100)}</Text>
             <View style={styles.detailsSection} >
                 <Text style={styles.language} >Last Update {moment(new Date(updated_at)).fromNow()} {'  '} </Text>
                 <Text style={styles.language} >{language}</Text>
@@ -58,10 +58,11 @@ const sharedStyles = (lightMode) => StyleSheet.create({
     },
     repoName: {
         fontFamily: 'Silka',
-        fontWeight: '600',
+        fontWeight: Platform.OS == 'android' ? '800' : '600',
         fontSize: 17,
         color: lightMode == 'dark' ? Colors.white : Colors.primary,
-        marginStart: Dimensions.DEVICE_WIDTH * .02
+        marginStart: Dimensions.DEVICE_WIDTH * .02,
+        maxWidth:Dimensions.DEVICE_WIDTH*.8
     },
     description: {
         fontFamily: 'Silka',
@@ -111,7 +112,7 @@ const sharedStyles = (lightMode) => StyleSheet.create({
     },
     startCount:{
         fontFamily: 'Silka',
-        fontWeight: '600',
+        fontWeight: Platform.OS == 'android' ? '800' : '600',
         fontSize: 13,
         color: lightMode == 'dark' ? Colors.lightGreen : Colors.primary,
     }

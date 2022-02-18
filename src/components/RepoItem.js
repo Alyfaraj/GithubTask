@@ -1,9 +1,10 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { Platform, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Colors, Dimensions } from '../theme';
 import { Icon } from 'react-native-elements';
+import ShortNumber from '../utils/ShortNumber';
 
-const RepoItem = () => {
+const RepoItem = ({full_name,description,forks_count,language,stargazers_count}) => {
     const lightMode = useColorScheme()
     const styles = { ...sharedStyles(lightMode) };
 
@@ -11,21 +12,18 @@ const RepoItem = () => {
         <View style={styles.container} >
             <View style={styles.nameRow} >
                 <Icon color={Colors.lightGreen} size={20} name='book' type='ant-design' />
-                <Text style={styles.repoName} >AlyFaraj/GitHubTask</Text>
+                <Text style={styles.repoName} >{full_name}</Text>
             </View>
-            <Text style={styles.description} >Lorem Ipsum is simply dummy text of the
-                printing and tvpesettina industrv. Lorem Ipsum
-                has been the industry's.
-            </Text>
+            <Text style={styles.description} >{description?.slice(0,300)}</Text>
             <View style={styles.detailsSection} >
-                <Text style={styles.language} >C++</Text>
+                <Text style={styles.language} >{language}</Text>
                 <View style={{ alignItems: 'center', flexDirection: 'row' }} >
                     <Icon size={17} color={Colors.lightGreen} name='star-o' type='font-awesome' />
-                    <Text style={styles.language} >{' '}4000</Text>
+                    <Text style={styles.language} >{' '}{ShortNumber(stargazers_count)}</Text>
                 </View>
                 <View style={{ alignItems: 'center', flexDirection: 'row' }} >
                     <Icon size={14} color={Colors.lightGreen} name='fork' type='ant-design' />
-                    <Text style={styles.language}>{' '}C++</Text>
+                    <Text style={styles.language}>{' '}{forks_count}</Text>
                 </View>
             </View>
         </View>
@@ -54,7 +52,7 @@ const sharedStyles = (lightMode) => StyleSheet.create({
     },
     repoName: {
         fontFamily: 'Silka',
-        fontWeight: '600',
+        fontWeight: Platform.OS == 'android' ? '800' : '600',
         fontSize: 17,
         color: lightMode == 'dark' ? Colors.white : Colors.primary,
         marginStart: Dimensions.DEVICE_WIDTH * .02
