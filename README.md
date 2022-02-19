@@ -1,6 +1,6 @@
 # GitHubTask
 
-##Setup
+### Setup
 
 Install the app
 
