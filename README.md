@@ -12,7 +12,7 @@ Install the app
 
 Clone the repo and then, at its root, run yarn or npm install 
 
-Run the app on iOS
+Run the app 
 
 At the root of the project:
 
