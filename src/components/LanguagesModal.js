@@ -11,6 +11,7 @@ import {
 import { Icon } from "react-native-elements";
 import { TextInput } from "react-native-gesture-handler";
 import { Dimensions, Colors } from "../theme";
+import { SearchInList } from "../utils/SearchInList";
 
 
 
@@ -22,10 +23,8 @@ const LanguagesModal = ({ visible, onClose, onPress }) => {
 
 
     const handelSearchInList = (searchWord) => {
-        let searchResult = list.filter(o =>
-            Object.keys(o).some(k => o.name.includes(searchWord))
-        );
-        setLanguageList(searchResult)
+        let data = SearchInList(searchWord, list)
+        setLanguageList(data)
     }
 
 

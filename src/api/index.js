@@ -6,6 +6,7 @@ const axiosApi = axios.create({
 
 axios.interceptors.request.use(request => {
     request.headers['Authorization'] = 'token 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'
+    return request
 })
 
-export default axiosApi
+export {axiosApi}

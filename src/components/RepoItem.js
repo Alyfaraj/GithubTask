@@ -23,7 +23,7 @@ const RepoItem = ({full_name,description,forks_count,language,stargazers_count})
                 </View>
                 <View style={{ alignItems: 'center', flexDirection: 'row' }} >
                     <Icon size={14} color={Colors.lightGreen} name='fork' type='ant-design' />
-                    <Text style={styles.language}>{' '}{forks_count}</Text>
+                    <Text style={styles.language}>{' '}{ShortNumber(forks_count)}</Text>
                 </View>
             </View>
         </View>
