@@ -23,14 +23,14 @@ const RepositoriesSection = () => {
   }, [date, language])
 
 
-  if (loading) return <ActivityIndicator style={{marginTop:Dimensions.DEVICE_HEIGHT*.3}} size='large' />
+  if (loading) return <ActivityIndicator style={{ marginTop: Dimensions.DEVICE_HEIGHT * .3 }} size='large' />
 
   return (
-    <View style={{flex:1}} >
-      <Text style={styles.title} >Repositories</Text>
+    <View style={{ flex: 1 }} >
       <FlatList
         ListHeaderComponent={() => (
           <View>
+            <Text style={styles.title} >Repositories</Text>
             <View style={styles.pickerRow} >
               <SelectionButton title={language ? language : 'Any'} label='language' onPress={() => setShowLangModal(true)} />
               <DatePicker date={date} setDate={setDate} />
