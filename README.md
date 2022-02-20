@@ -1,12 +1,18 @@
 # GitHubTask
 
+
+
+
+https://user-images.githubusercontent.com/42911937/154805678-210743f3-7ee3-456c-b803-03fb2ba68c62.mp4
+
+
 ### Setup
 
 Install the app
 
 Clone the repo and then, at its root, run yarn or npm install 
 
-Run the app on iOS
+Run the app 
 
 At the root of the project:
 
